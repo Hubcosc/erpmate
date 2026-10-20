@@ -151,7 +151,7 @@ cd erpmate
 3. *(Optional)* create a dedicated user:
 
 ```sql
-CREATE USER erp_user WITH PASSWORD 'replace-with-a-strong-password';
+CREATE USER erp_user WITH PASSWORD 'choose-a-strong-password';
 CREATE DATABASE erp_inventory OWNER erp_user;
 ```
 
@@ -216,7 +216,7 @@ APP_PORT=8080
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=erp_user
-DB_PASSWORD=replace-with-a-strong-password
+DB_PASSWORD=choose-a-strong-password
 DB_NAME=erp_inventory
 DB_SSLMODE=disable
 
@@ -441,9 +441,9 @@ The administrator is the one created from your own `.env`:
 | `admin@example.test` | `BOOTSTRAP_ADMIN_PASSWORD` from your `.env` | System Administrator |
 
 ```env
-# .env
+# .env — never commit the real values
 BOOTSTRAP_ADMIN_EMAIL=admin@example.test
-BOOTSTRAP_ADMIN_PASSWORD=replace-with-a-strong-password
+BOOTSTRAP_ADMIN_PASSWORD=choose-a-strong-password
 ```
 
 > **Only the administrator can open the Super admin site.** The other roles each see a different set of modules, so signing in as several of them is the quickest way to check the role-based navigation.
