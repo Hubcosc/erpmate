@@ -21,10 +21,9 @@ A modern full-stack ERP that manages the complete **procure-to-pay lifecycle**, 
 
 ## 📸 Screenshots
 
-| Admin Dashboard | Purchase Requisition Workflow |
-| :---: | :---: |
-| ![Admin Dashboard](<img width="1366" height="631" alt="photo_2026-10-20_13-40-25" src="https://github.com/user-attachments/assets/6e9f6a9c-80d8-42e3-abc1-07c70e592234" />
-) 
+| Admin Dashboard |
+| :---: |
+| ![Admin Dashboard](https://github.com/user-attachments/assets/2bf66e81-2c41-4baa-a60f-f2f481a377ff) |
 
 ---
 
