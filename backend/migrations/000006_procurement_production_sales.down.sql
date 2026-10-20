@@ -1,0 +1,18 @@
+DROP TABLE IF EXISTS delivery_note_items;
+DROP TABLE IF EXISTS delivery_notes;
+DROP TABLE IF EXISTS sales_order_item_allocations;
+DROP TABLE IF EXISTS sales_order_items;
+DROP TABLE IF EXISTS sales_orders;
+DROP TABLE IF EXISTS production_receipt_items;
+DROP TABLE IF EXISTS production_receipts;
+DROP TABLE IF EXISTS goods_receipt_note_items;
+DROP TABLE IF EXISTS goods_receipt_notes;
+DROP TABLE IF EXISTS purchase_order_items;
+DROP TABLE IF EXISTS purchase_orders;
+DROP SEQUENCE IF EXISTS delivery_note_number_seq;
+DROP SEQUENCE IF EXISTS sales_order_number_seq;
+DROP SEQUENCE IF EXISTS production_receipt_number_seq;
+DROP SEQUENCE IF EXISTS goods_receipt_number_seq;
+DROP SEQUENCE IF EXISTS purchase_order_number_seq;
+ALTER TABLE stock_movements ALTER COLUMN unit_cost TYPE NUMERIC(18,4);
+ALTER TABLE stock_batches ALTER COLUMN unit_cost TYPE NUMERIC(18,4);

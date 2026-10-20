@@ -1,0 +1,1 @@
+-- Initial migration rollback placeholder. No schema objects are created yet.

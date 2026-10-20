@@ -1,0 +1,338 @@
+/* ErpMate login — green & white */
+.lg-screen {
+  --lg-green-900: #0a3324;
+  --lg-green-800: #0f4a33;
+  --lg-green-700: #14663f;
+  --lg-green-600: #178a4f;
+  --lg-field: #eef5f1;
+  --lg-line: #b9cbc1;
+  --lg-ink: #0f2a1e;
+  --lg-muted: #4d5f55;
+  --lg-danger: #b42318;
+
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  background: #fff;
+  color: var(--lg-ink);
+  font-family: 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.lg-screen *,
+.lg-screen *::before,
+.lg-screen *::after {
+  box-sizing: border-box;
+}
+
+/* ---------- Left: hero ---------- */
+.lg-screen .lg-hero {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 40px;
+  color: #fff;
+  background-color: var(--lg-green-900);
+  background-image:
+    linear-gradient(rgba(10, 51, 36, 0.8), rgba(10, 51, 36, 0.9)),
+    url('../../../assets/login-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.lg-screen .lg-hero-inner {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.lg-screen .lg-welcome {
+  margin: 0 0 14px;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+
+.lg-screen .lg-logo {
+  display: grid;
+  gap: 4px;
+  margin-bottom: 28px;
+}
+
+.lg-screen .lg-logo-name {
+  font-size: 54px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+
+.lg-screen .lg-logo-tag {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #8ee0b2;
+}
+
+.lg-screen .lg-hero-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Right: form ---------- */
+.lg-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background: #fff;
+}
+
+.lg-card {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.lg-card h1 {
+  margin: 0 0 14px;
+  font-size: 44px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--lg-green-900);
+}
+
+.lg-sub {
+  margin: 0 auto 40px;
+  max-width: 340px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--lg-ink);
+}
+
+.lg-form {
+  display: grid;
+  gap: 18px;
+  text-align: left;
+}
+
+.lg-input {
+  position: relative;
+}
+
+.lg-screen .lg-input input {
+  width: 100%;
+  height: 52px;
+  padding: 0 52px 0 16px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--lg-ink);
+  background: var(--lg-field);
+  border: 0;
+  border-bottom: 2px solid var(--lg-line);
+  border-radius: 4px 4px 0 0;
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.lg-screen .lg-input input::placeholder {
+  color: #6f8277;
+}
+
+.lg-screen .lg-input input:hover {
+  border-bottom-color: #8fa89b;
+}
+
+.lg-screen .lg-input input:focus,
+.lg-screen .lg-input input:focus-visible {
+  outline: none;
+  box-shadow: none;
+  background: #e6f1eb;
+  border-bottom-color: var(--lg-green-600);
+}
+
+.lg-input-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7c8f85;
+  pointer-events: none;
+}
+
+.lg-eye {
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.lg-eye:hover {
+  color: var(--lg-green-700);
+}
+
+.lg-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: -4px;
+}
+
+.lg-remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--lg-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.lg-remember input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--lg-green-700);
+  cursor: pointer;
+}
+
+.lg-link {
+  padding: 0;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--lg-green-700);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.lg-link:hover {
+  text-decoration: underline;
+}
+
+.lg-error {
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--lg-danger);
+  background: #fef3f2;
+  border-left: 3px solid var(--lg-danger);
+  border-radius: 4px;
+}
+
+.lg-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 44px;
+  margin-top: 6px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--lg-green-700);
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 3px 8px rgba(20, 102, 63, 0.3);
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.lg-submit:hover:not(:disabled) {
+  background: var(--lg-green-800);
+  box-shadow: 0 4px 12px rgba(20, 102, 63, 0.38);
+}
+
+.lg-submit:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.lg-submit:focus-visible,
+.lg-link:focus-visible,
+.lg-eye:focus-visible,
+.lg-remember input:focus-visible {
+  outline: 3px solid rgba(23, 138, 79, 0.4);
+  outline-offset: 2px;
+}
+
+.lg-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: lg-spin 0.7s linear infinite;
+}
+
+@keyframes lg-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .lg-screen {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  .lg-screen .lg-hero {
+    padding: 32px 24px;
+  }
+
+  .lg-screen .lg-logo {
+    margin-bottom: 0;
+  }
+
+  .lg-screen .lg-logo-name {
+    font-size: 40px;
+  }
+
+  .lg-screen .lg-hero-text {
+    display: none;
+  }
+
+  .lg-screen .lg-welcome {
+    margin-bottom: 8px;
+  }
+
+  .lg-panel {
+    align-items: flex-start;
+    padding: 32px 24px 48px;
+  }
+
+  .lg-card h1 {
+    font-size: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lg-spinner {
+    animation-duration: 2s;
+  }
+
+  .lg-screen * {
+    transition: none !important;
+  }
+}

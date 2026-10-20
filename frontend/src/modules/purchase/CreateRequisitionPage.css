@@ -1,0 +1,67 @@
+/* Shared page tokens (same as list) */
+.pr-page {
+  --pr-navy: #0b2a5b;
+  --pr-accent: #e53935;
+  --pr-accent-dark: #c62828;
+  --pr-ink: #1e2430;
+  --pr-muted: #6b7280;
+  --pr-border: #e5e7eb;
+  display: grid;
+  gap: 20px;
+  padding: 24px;
+  font-family: 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+.pr-page * { box-sizing: border-box; }
+.pr-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.pr-header h1 { margin: 0; font-size: 28px; font-weight: 500; color: var(--pr-navy); }
+.pr-eyebrow { margin: 0 0 4px; font-size: 13px; font-weight: 500; color: var(--pr-accent); }
+.pr-subtitle { margin: 6px 0 0; font-size: 14px; color: var(--pr-muted); }
+
+.pr-btn { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; font: inherit; font-size: 13px; font-weight: 600; border: 0; border-radius: 4px; cursor: pointer; }
+.pr-btn-primary { background: var(--pr-accent); color: #fff; box-shadow: 0 2px 6px rgba(229,57,53,0.3); }
+.pr-btn-primary:hover { background: var(--pr-accent-dark); }
+.pr-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.pr-btn-ghost { background: #fff; color: var(--pr-muted); border: 1px solid var(--pr-border); }
+.pr-btn-ghost:hover { background: #f7f8fa; }
+.pr-btn-small { height: 28px; padding: 0 12px; font-size: 12px; }
+
+.pr-error { padding: 12px 16px; background: #fdecea; color: #b42318; border: 1px solid #f5c6c2; border-radius: 6px; font-size: 13px; }
+
+.pr-form { display: grid; gap: 20px; }
+.pr-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(16,24,40,0.08); padding: 20px; }
+.pr-card-title { margin: 0 0 16px; font-size: 16px; font-weight: 600; color: var(--pr-navy); }
+.pr-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+
+/* Form Grid */
+.pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pr-field { display: grid; gap: 6px; font-size: 12px; }
+.pr-field > span { font-weight: 500; color: var(--pr-ink); }
+.pr-field > span > i { color: #d32f2f; font-style: normal; }
+.pr-field input, .pr-field select, .pr-field textarea {
+  width: 100%; padding: 8px 12px; font: inherit; font-size: 13px; color: var(--pr-ink);
+  background: #eef5f1; border: 0; border-bottom: 2px solid #b9cbc1; border-radius: 4px 4px 0 0; outline: none;
+}
+.pr-field input:focus, .pr-field select:focus, .pr-field textarea:focus { border-bottom-color: var(--pr-accent); }
+.pr-field-wide { grid-column: 1 / -1; }
+
+/* Line Items Table */
+.pr-empty-lines { text-align: center; padding: 24px; color: var(--pr-muted); font-size: 13px; background: #f8f9fb; border-radius: 6px; }
+.pr-line-table-wrap { overflow-x: auto; border: 1px solid var(--pr-border); border-radius: 6px; }
+.pr-line-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.pr-line-table th { text-align: left; padding: 10px 12px; background: #f8f9fb; border-bottom: 1px solid var(--pr-border); font-size: 11px; font-weight: 600; color: var(--pr-muted); text-transform: uppercase; }
+.pr-line-table td { padding: 8px 12px; border-bottom: 1px solid var(--pr-border); }
+.pr-line-table tr:last-child td { border-bottom: 0; }
+
+.pr-line-table input, .pr-line-table select {
+  width: 100%; padding: 8px; font: inherit; font-size: 13px;
+  background: #fff; border: 1px solid var(--pr-border); border-radius: 4px; outline: none;
+}
+.pr-line-table input:focus, .pr-line-table select:focus { border-color: var(--pr-accent); }
+
+.pr-row-btn-danger { background: transparent; border: 0; color: #b42318; cursor: pointer; font-size: 16px; padding: 4px 8px; border-radius: 4px; }
+.pr-row-btn-danger:hover { background: #fdecea; }
+
+/* Footer */
+.pr-form-footer { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(16,24,40,0.08); }
+.pr-total { font-size: 15px; color: var(--pr-ink); display: flex; gap: 12px; align-items: center; }
+.pr-total strong { font-size: 20px; color: var(--pr-navy); font-weight: 600; }

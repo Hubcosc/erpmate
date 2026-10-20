@@ -1,0 +1,432 @@
+/* ErpMate app shell — top bar + sidebar (navy, red accent) */
+.sh-shell {
+  --sh-navy: #0b2a5b;
+  --sh-navy-active: #071e45;
+  --sh-accent: #e53935;
+  --sh-page: #f2f3f5;
+  --sh-ink: #1e2430;
+  --sh-muted: #6b7280;
+  --sh-top: 52px;
+  --sh-side: 240px;
+
+  display: grid;
+  grid-template-columns: var(--sh-side) minmax(0, 1fr);
+  grid-template-rows: var(--sh-top) minmax(0, 1fr);
+  height: 100vh;
+  background: var(--sh-page);
+  color: var(--sh-ink);
+  font-family: 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sh-shell *,
+.sh-shell *::before,
+.sh-shell *::after {
+  box-sizing: border-box;
+}
+
+.sh-shell button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.sh-shell button:focus-visible,
+.sh-shell input:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.55);
+  outline-offset: 2px;
+}
+
+/* ---------- Top bar ---------- */
+.sh-topbar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  color: #fff;
+  background: var(--sh-navy);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sh-menu {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+}
+
+.sh-menu:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sh-brand {
+  width: calc(var(--sh-side) - 32px);
+  flex: none;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.sh-brand span {
+  color: var(--sh-accent);
+}
+
+.sh-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min(360px, 100%);
+  height: 34px;
+  padding: 0 12px;
+  color: var(--sh-muted);
+  background: #fff;
+  border-radius: 8px;
+}
+
+.sh-search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  font: inherit;
+  font-size: 13px;
+  color: var(--sh-ink);
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.sh-search:focus-within {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+}
+
+.sh-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.sh-user-name {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ---------- Avatar ---------- */
+.sh-avatar {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sh-navy);
+  background: #fff;
+  border-radius: 50%;
+}
+
+.sh-avatar-sm {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+}
+
+/* ---------- Sidebar ---------- */
+.sh-sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  color: #fff;
+  background: var(--sh-navy);
+}
+
+.sh-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sh-profile-copy {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.sh-profile-copy strong {
+  font-size: 13px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sh-profile-copy span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.sh-profile-copy i {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  background: #2ecc71;
+  border-radius: 50%;
+}
+
+.sh-nav {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  align-content: start;
+  padding: 8px 0;
+  overflow-y: auto;
+}
+
+.sh-shell .sh-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 42px;
+  padding: 0 20px;
+  font-size: 13px;
+  color: #fff;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-left: 3px solid transparent;
+  transition: background 0.15s;
+}
+
+.sh-shell .sh-nav-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sh-shell .sh-nav-item.is-active {
+  font-weight: 600;
+  background: var(--sh-navy-active);
+  border-left-color: var(--sh-accent);
+}
+
+.sh-nav-empty {
+  margin: 12px 20px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.sh-shell .sh-logout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 46px;
+  padding: 0 20px;
+  font-size: 13px;
+  color: #fff;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sh-shell .sh-logout:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- Main ---------- */
+.sh-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  background: var(--sh-page);
+}
+
+.sh-content {
+  flex: 1;
+}
+
+.sh-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 24px;
+  font-size: 12px;
+  color: var(--sh-muted);
+  border-top: 1px solid #e5e7eb;
+}
+
+/* ---------- Placeholder page ---------- */
+.sh-placeholder {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  max-width: 560px;
+  margin: 24px;
+  padding: 28px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.08);
+}
+
+.sh-placeholder h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--sh-navy);
+}
+
+.sh-placeholder p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--sh-muted);
+}
+
+.sh-placeholder .sh-placeholder-note {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sh-accent);
+}
+
+.sh-shell .sh-btn {
+  height: 36px;
+  margin-top: 6px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--sh-accent);
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(229, 57, 53, 0.3);
+}
+
+.sh-shell .sh-btn:hover {
+  background: #c62828;
+}
+
+/* ---------- Responsive ---------- */
+.sh-scrim {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .sh-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sh-menu {
+    display: inline-flex;
+  }
+
+  .sh-brand {
+    width: auto;
+  }
+
+  .sh-user-name {
+    display: none;
+  }
+
+  .sh-sidebar {
+    position: fixed;
+    top: var(--sh-top);
+    bottom: 0;
+    left: 0;
+    z-index: 30;
+    width: var(--sh-side);
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+  }
+
+  .sh-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .sh-shell .sh-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--sh-top) 0 0 0;
+    z-index: 20;
+    background: rgba(15, 23, 42, 0.45);
+    border: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sh-sidebar {
+    transition: none;
+  }
+}
+
+/* ---------- Sidebar groups (dropdowns) ---------- */
+.sh-group + .sh-group {
+  margin-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sh-shell .sh-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 38px;
+  padding: 0 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  background: transparent;
+  border: 0;
+  transition: color 0.15s, background 0.15s;
+}
+
+.sh-shell .sh-group-head:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sh-shell .sh-group-head.has-active {
+  color: #fff;
+}
+
+.sh-chevron {
+  flex: none;
+  transform: rotate(-90deg);
+  transition: transform 0.15s;
+}
+
+.sh-chevron.is-open {
+  transform: rotate(0deg);
+}
+
+.sh-group-items {
+  display: grid;
+  padding-bottom: 6px;
+}
+
+.sh-shell .sh-group-items .sh-nav-item {
+  height: 40px;
+  padding-left: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sh-chevron {
+    transition: none;
+  }
+}

@@ -1,0 +1,467 @@
+/* =====================================================================
+   Master CRUD Page styles — used by MasterCrudPage.tsx + MasterCrudForm.tsx
+   Covers: page shell, header, toolbar, buttons, table, row actions,
+   status pills, delete modal, and the master CRUD form.
+   ===================================================================== */
+
+/* ---------- Page ---------- */
+.mcp-page {
+  --mcp-navy: #0b2a5b;
+  --mcp-accent: #e53935;
+  --mcp-accent-dark: #c62828;
+  --mcp-accent-soft: #fdecea;
+  --mcp-ink: #1e2430;
+  --mcp-muted: #6b7280;
+  --mcp-border: #e5e7eb;
+
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+  color: var(--mcp-ink);
+  font-family: 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mcp-page *,
+.mcp-page *::before,
+.mcp-page *::after {
+  box-sizing: border-box;
+}
+
+.mcp-page h1,
+.mcp-page h2,
+.mcp-page h3,
+.mcp-page p {
+  margin: 0;
+}
+
+/* ---------- Header ---------- */
+.mcp-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.mcp-eyebrow {
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mcp-accent);
+}
+
+.mcp-header h1 {
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--mcp-navy);
+}
+
+.mcp-subtitle {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--mcp-muted);
+}
+
+/* ---------- Buttons ---------- */
+.mcp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--mcp-accent);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.mcp-btn-primary {
+  box-shadow: 0 2px 6px rgba(229, 57, 53, 0.3);
+}
+
+.mcp-btn-primary:hover {
+  background: var(--mcp-accent-dark);
+}
+
+.mcp-btn-ghost {
+  background: #fff;
+  color: var(--mcp-muted);
+  border: 1px solid var(--mcp-border);
+  box-shadow: none;
+}
+
+.mcp-btn-ghost:hover {
+  background: #f7f8fa;
+}
+
+.mcp-page button:focus-visible,
+.mcp-page input:focus-visible,
+.mcp-page select:focus-visible {
+  outline: 3px solid rgba(11, 42, 91, 0.35);
+  outline-offset: 2px;
+}
+
+/* ---------- Toolbar / search ---------- */
+.mcp-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.mcp-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px;
+  background: #fff;
+  border: 1px solid var(--mcp-border);
+  border-radius: 4px;
+  color: var(--mcp-muted);
+}
+
+.mcp-search input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 13px;
+  color: var(--mcp-ink);
+}
+
+.mcp-search input::placeholder {
+  color: var(--mcp-muted);
+}
+
+/* ---------- States ---------- */
+.mcp-state {
+  padding: 16px 0;
+  font-size: 13px;
+  color: var(--mcp-muted);
+}
+
+.mcp-state-error {
+  color: #d32f2f;
+}
+
+/* ---------- Table ---------- */
+.mcp-table-wrap {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.08);
+  overflow: hidden;
+}
+
+.mcp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.mcp-table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--mcp-muted);
+  background: #f8f9fb;
+  border-bottom: 1px solid var(--mcp-border);
+  white-space: nowrap;
+}
+
+.mcp-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--mcp-border);
+  color: var(--mcp-ink);
+  vertical-align: middle;
+}
+
+.mcp-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.mcp-table tbody tr:hover {
+  background: #f7f8fa;
+}
+
+/* ---------- Row actions ---------- */
+.mcp-actions-cell {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.mcp-row-actions {
+  display: inline-flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.mcp-row-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 12px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mcp-navy);
+  background: #fff;
+  border: 1px solid var(--mcp-border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.mcp-row-btn:hover {
+  background: #f7f8fa;
+  border-color: #cbd5e1;
+}
+
+.mcp-row-btn-danger {
+  color: #b42318;
+  border-color: #f5c6c2;
+}
+
+.mcp-row-btn-danger:hover {
+  background: #fdecea;
+  border-color: #d32f2f;
+}
+
+/* ---------- Status pill ---------- */
+.mcp-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.mcp-pill.is-active {
+  color: #14663f;
+  background: #e6f1eb;
+}
+
+.mcp-pill.is-inactive {
+  color: #b42318;
+  background: #fdecea;
+}
+
+/* ---------- Delete confirmation ---------- */
+.mcp-delete-confirm {
+  display: grid;
+  gap: 16px;
+}
+
+.mcp-delete-confirm p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--mcp-ink);
+}
+
+.mcp-delete-note {
+  font-size: 12px;
+  color: var(--mcp-muted);
+}
+
+/* =====================================================================
+   Master CRUD Form (.mcf-*)
+   ===================================================================== */
+
+.mcf-form {
+  display: grid;
+  gap: 18px;
+}
+
+.mcf-error {
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #b42318;
+  background: #fdecea;
+  border-radius: 6px;
+  border: 1px solid #f5c6c2;
+}
+
+.mcf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 16px;
+}
+
+.mcf-field {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--mcp-ink);
+}
+
+.mcf-field > span {
+  font-weight: 500;
+  color: var(--mcp-ink);
+}
+
+.mcf-field > span > i {
+  color: #d32f2f;
+  font-style: normal;
+}
+
+.mcf-field input,
+.mcf-field select,
+.mcf-field textarea {
+  width: 100%;
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--mcp-ink);
+  background: #eef5f1;
+  border: 0;
+  border-bottom: 2px solid #b9cbc1;
+  border-radius: 4px 4px 0 0;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.mcf-field input {
+  height: 38px;
+}
+
+.mcf-field input:focus,
+.mcf-field select:focus,
+.mcf-field textarea:focus {
+  border-bottom-color: var(--mcp-accent);
+}
+
+.mcf-field input::placeholder,
+.mcf-field textarea::placeholder {
+  color: #9aa1ad;
+}
+
+.mcf-field input:disabled,
+.mcf-field select:disabled {
+  background: #f4f6f5;
+  color: var(--mcp-muted);
+  cursor: not-allowed;
+}
+
+.mcf-field-wide {
+  grid-column: 1 / -1;
+}
+
+.mcf-field-checkbox {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mcf-field-checkbox input {
+  width: auto;
+  height: auto;
+  accent-color: var(--mcp-accent);
+}
+
+.mcf-hint {
+  font-size: 11px;
+  color: var(--mcp-muted);
+}
+
+.mcf-loading {
+  font-size: 12px;
+  color: var(--mcp-muted);
+}
+
+.mcf-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.mcf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 18px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.mcf-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mcf-btn-primary {
+  background: var(--mcp-accent);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(229, 57, 53, 0.3);
+}
+
+.mcf-btn-primary:hover:not(:disabled) {
+  background: var(--mcp-accent-dark);
+}
+
+.mcf-btn-ghost {
+  background: #fff;
+  color: var(--mcp-muted);
+  border: 1px solid var(--mcp-border);
+}
+
+.mcf-btn-ghost:hover:not(:disabled) {
+  background: #f7f8fa;
+}
+
+.mcf-btn-danger {
+  background: #d32f2f;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(211, 47, 47, 0.3);
+}
+
+.mcf-btn-danger:hover:not(:disabled) {
+  background: #b42318;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .mcp-page {
+    padding: 16px;
+  }
+
+  .mcp-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mcp-table-wrap {
+    overflow-x: auto;
+  }
+
+  .mcf-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.mcp-pill.is-info {
+  color: #0b4a6f;
+  background: #e3f0f7;
+}

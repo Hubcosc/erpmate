@@ -1,0 +1,72 @@
+.pr-page {
+  --pr-navy: #0b2a5b;
+  --pr-accent: #e53935;
+  --pr-accent-dark: #c62828;
+  --pr-ink: #1e2430;
+  --pr-muted: #6b7280;
+  --pr-border: #e5e7eb;
+  display: grid;
+  gap: 20px;
+  padding: 24px;
+  font-family: 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+.pr-page * { box-sizing: border-box; }
+
+.pr-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+.pr-eyebrow { margin: 0 0 4px; font-size: 13px; font-weight: 500; color: var(--pr-accent); }
+.pr-header h1 { margin: 0; font-size: 28px; font-weight: 500; color: var(--pr-navy); }
+.pr-subtitle { margin: 6px 0 0; font-size: 14px; color: var(--pr-muted); }
+
+.pr-btn {
+  display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 16px;
+  font: inherit; font-size: 13px; font-weight: 600; border: 0; border-radius: 4px;
+  cursor: pointer; transition: background 0.15s;
+}
+.pr-btn-primary { background: var(--pr-accent); color: #fff; box-shadow: 0 2px 6px rgba(229,57,53,0.3); }
+.pr-btn-primary:hover { background: var(--pr-accent-dark); }
+
+/* Tabs */
+.pr-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--pr-border); overflow-x: auto; }
+.pr-tab {
+  background: transparent; border: 0; padding: 10px 16px; font: inherit; font-size: 13px; font-weight: 500;
+  color: var(--pr-muted); cursor: pointer; border-bottom: 2px solid transparent;
+  display: flex; align-items: center; gap: 8px; white-space: nowrap;
+}
+.pr-tab:hover { color: var(--pr-ink); }
+.pr-tab.is-active { color: var(--pr-accent); border-bottom-color: var(--pr-accent); font-weight: 600; }
+.pr-tab-count {
+  background: #f1f2f4; color: var(--pr-muted); font-size: 11px; padding: 2px 6px; border-radius: 999px;
+}
+.pr-tab.is-active .pr-tab-count { background: #fdecea; color: var(--pr-accent); }
+
+/* Toolbar */
+.pr-toolbar { display: flex; gap: 12px; align-items: center; }
+.pr-search {
+  flex: 1; display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px;
+  background: #fff; border: 1px solid var(--pr-border); border-radius: 4px; color: var(--pr-muted);
+}
+.pr-search input { flex: 1; border: 0; outline: 0; background: transparent; font: inherit; font-size: 13px; }
+
+/* Table */
+.pr-table-wrap { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(16,24,40,0.08); overflow: hidden; }
+.pr-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.pr-table th {
+  padding: 12px 16px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--pr-muted); background: #f8f9fb; border-bottom: 1px solid var(--pr-border); text-align: left; white-space: nowrap;
+}
+.pr-table td { padding: 14px 16px; border-bottom: 1px solid var(--pr-border); vertical-align: middle; }
+.pr-table tr:last-child td { border-bottom: 0; }
+.pr-table tr:hover { background: #f7f8fa; }
+
+/* Status Pills */
+.pr-pill { display: inline-block; padding: 3px 10px; font-size: 11px; font-weight: 600; border-radius: 999px; white-space: nowrap; }
+.status-draft { background: #f1f2f4; color: #4b5563; }
+.status-pending_pm { background: #fef3c7; color: #92400e; }
+.status-pending_finance { background: #e0f2fe; color: #075985; }
+.status-approved { background: #dcfce7; color: #166534; }
+.status-rejected { background: #fee2e2; color: #991b1b; }
+.status-returned_for_correction { background: #ffedd5; color: #9a3412; }
+.status-suspended { background: #f3e8ff; color: #6b21a8; }
+
+.pr-state { font-size: 13px; color: var(--pr-muted); padding: 16px 0; }
+.pr-state-error { color: #d32f2f; }
