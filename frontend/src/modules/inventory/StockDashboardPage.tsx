@@ -1,20 +1,14 @@
 import { useEffect, useState } from 'react'
-import { 
-  createInventoryApi, 
-  STOCK_STATUS_LABEL, 
-  formatQty, 
-  type StockBalance, 
+import { inventoryApi } from '../../api/inventoryClient'
+import {
+  STOCK_STATUS_LABEL,
+  type StockBalance,
   type StockSummary,
   type StockStatus
 } from '../../api/inventory'
 import { Icon } from '../../shared/components/Icon'
+import { fmtQty } from '../../shared/utils/format'
 import './StockDashboardPage.css'
-
-// Initialize the API here (or export it from a shared file)
-const api = createInventoryApi({
-  baseUrl: 'http://localhost:8080/api/v1/inventory',
-  getToken: () => localStorage.getItem('token'), // Adjust if your token key is different
-})
 
 type Props = {
   onNavigate: (page: string) => void
@@ -43,12 +37,12 @@ export default function StockDashboardPage({ onNavigate }: Props) {
       const statusArray = statusFilter === 'all' ? undefined : [statusFilter as StockStatus]
       
       const [stockRes, summaryRes] = await Promise.all([
-        api.listStock({ 
+        inventoryApi.listStock({ 
           status: statusArray, 
           search: searchValue || undefined,
           limit: 100 
         }),
-        api.stockSummary()
+        inventoryApi.stockSummary()
       ])
       
       setStock(stockRes.items)
@@ -77,6 +71,9 @@ export default function StockDashboardPage({ onNavigate }: Props) {
           <h1>Stock Dashboard</h1>
           <p className="inv-subtitle">Current stock levels across all warehouses.</p>
         </div>
+        <button type="button" className="inv-refresh" onClick={() => onNavigate('Stock Movements')}>
+          Stock movements
+        </button>
       </header>
 
       {/* Summary Cards */}
@@ -163,9 +160,9 @@ export default function StockDashboardPage({ onNavigate }: Props) {
                     <strong>{line.item_code}</strong> — {line.item_name}
                   </td>
                   <td>{line.warehouse_name}</td>
-                  <td style={{ textAlign: 'right' }}>{formatQty(line.quantity)} {line.unit_of_measure}</td>
-                  <td style={{ textAlign: 'right' }}>{formatQty(line.reserved_quantity)}</td>
-                  <td style={{ textAlign: 'right', fontWeight: 600 }}>{formatQty(line.available_quantity)}</td>
+                  <td style={{ textAlign: 'right' }}>{fmtQty(line.quantity)} {line.unit_of_measure}</td>
+                  <td style={{ textAlign: 'right' }}>{fmtQty(line.reserved_quantity)}</td>
+                  <td style={{ textAlign: 'right', fontWeight: 600 }}>{fmtQty(line.available_quantity)}</td>
                   <td>
                     <span className={`inv-pill status-${line.stock_status}`}>
                       {STOCK_STATUS_LABEL[line.stock_status]}

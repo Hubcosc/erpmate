@@ -8,6 +8,7 @@ import AddUserForm from './AddUserForm'
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([])
   const [roles, setRoles] = useState<Role[]>([])
+  const [roleFilter, setRoleFilter] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [search, setSearch] = useState('')
@@ -17,11 +18,16 @@ export default function UsersPage() {
   const [deletingUser, setDeletingUser] = useState<User | null>(null)
   const [deleting, setDeleting] = useState(false)
 
-  const loadUsers = async (searchValue = '') => {
+  const loadUsers = async (searchValue = '', roleId = '') => {
     setLoading(true)
     setError('')
     try {
-      const res = await listUsers({ search: searchValue, page: 1, limit: 100 })
+      const res = await listUsers({
+        search: searchValue || undefined,
+        role_id: roleId || undefined,
+        page: 1,
+        limit: 100,
+      })
       setUsers(res.data)
       setTotal(res.meta?.total ?? res.data.length)
     } catch (err) {
@@ -47,7 +53,7 @@ export default function UsersPage() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    void loadUsers(search)
+    void loadUsers(search, roleFilter)
   }
 
   const confirmDelete = async () => {
@@ -93,12 +99,32 @@ export default function UsersPage() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </label>
+        <select
+          className="users-select"
+          value={roleFilter}
+          onChange={(e) => {
+            setRoleFilter(e.target.value)
+            void loadUsers(search, e.target.value)
+          }}
+          aria-label="Filter by role"
+        >
+          <option value="">All roles</option>
+          {roles.map((role) => (
+            <option key={role.id} value={role.id}>
+              {role.name}
+            </option>
+          ))}
+        </select>
         <button className="users-btn" type="submit">Search</button>
-        {search && (
+        {(search || roleFilter) && (
           <button
             className="users-btn users-btn-ghost"
             type="button"
-            onClick={() => { setSearch(''); void loadUsers('') }}
+            onClick={() => {
+              setSearch('')
+              setRoleFilter('')
+              void loadUsers('', '')
+            }}
           >
             Clear
           </button>

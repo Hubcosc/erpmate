@@ -1,0 +1,38 @@
+/* ErpMate UI Design Specification — Section 2: Theme tokens (green theme) */
+/* All colors are CSS variables so the app can be re-themed in one place. */
+
+:root {
+  /* Core frame colors */
+  --color-primary: #0A3324;       /* Top bar, sidebar */
+  --color-primary-active: #06241A; /* Active sidebar item */
+  --color-accent: #14663F;        /* Primary buttons, active tab line, breadcrumbs, section highlights */
+  --color-accent-hover: #0F4A33;  /* Button hover */
+  --color-accent-tint: #E6F1EB;   /* Highlighted input fill, selected row */
+
+  /* Page & surface */
+  --color-page-bg: #F2F5F3;       /* Page background */
+  --color-surface: #FFFFFF;       /* Cards, table */
+
+  /* Fields (filled input with bottom line) */
+  --color-field-bg: #EEF5F1;      /* Input background */
+  --color-field-line: #B9CBC1;    /* Input bottom line */
+
+  /* Text */
+  --color-text: #0F2A1E;          /* Main text */
+  --color-text-muted: #5B6A62;    /* Placeholders, captions */
+
+  /* Borders */
+  --color-border: #E4EBE7;        /* Card and table borders */
+
+  /* Semantic */
+  --color-success: #2E9E5B;       /* Save icon, online dot */
+  --color-danger: #B42318;        /* Cancel icon, errors */
+
+  /* Derived / component-level */
+  --shadow-card: 0 2px 8px rgba(16, 24, 40, 0.08);
+  --shadow-button: 0 2px 6px rgba(20, 102, 63, 0.3);
+  --radius-card: 8px;
+  --radius-button: 4px;
+  --radius-input-top: 4px 4px 0 0;
+  --font-family: 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+}

@@ -1,4 +1,4 @@
-import { createMasterApi, type ListParams } from './master-factory'
+import { createMasterApi } from './master-factory'
 import { apiRequest } from './client'
 
 export interface Item {

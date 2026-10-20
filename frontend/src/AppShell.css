@@ -1,21 +1,22 @@
-/* ErpMate app shell — top bar + sidebar (navy, red accent) */
+/* ErpMate app shell — top bar + sidebar (green theme per UI Design Specification) */
+/* Layout follows the current shell: CSS grid, fixed sidebar, top bar, scrollable content. */
+
+@import './styles/tokens.css';
+
 .sh-shell {
-  --sh-navy: #0b2a5b;
-  --sh-navy-active: #071e45;
-  --sh-accent: #e53935;
-  --sh-page: #f2f3f5;
-  --sh-ink: #1e2430;
-  --sh-muted: #6b7280;
-  --sh-top: 52px;
-  --sh-side: 240px;
+  --sh-top: 48px;         /* spec: 48px top bar */
+  --sh-side: 258px;       /* restored sidebar width */
+  --sh-side-collapsed: 56px;
 
   display: grid;
   grid-template-columns: var(--sh-side) minmax(0, 1fr);
   grid-template-rows: var(--sh-top) minmax(0, 1fr);
   height: 100vh;
-  background: var(--sh-page);
-  color: var(--sh-ink);
-  font-family: 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+  background: var(--color-page-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 13px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -32,20 +33,23 @@
 
 .sh-shell button:focus-visible,
 .sh-shell input:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.55);
+  outline: 3px solid rgba(20, 102, 63, 0.4);
   outline-offset: 2px;
 }
 
 /* ---------- Top bar ---------- */
+/* spec: Height 48px, background --color-primary, fixed at top */
 .sh-topbar {
   grid-column: 1 / -1;
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 0 16px;
+  height: var(--sh-top);
   color: #fff;
-  background: var(--sh-navy);
+  background: var(--color-primary);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
 }
 
 .sh-menu {
@@ -57,7 +61,7 @@
   color: #fff;
   background: transparent;
   border: 0;
-  border-radius: 6px;
+  border-radius: var(--radius-button);
 }
 
 .sh-menu:hover {
@@ -67,15 +71,17 @@
 .sh-brand {
   width: calc(var(--sh-side) - 32px);
   flex: none;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.02em;
+  color: #fff;
 }
 
 .sh-brand span {
-  color: var(--sh-accent);
+  color: var(--color-accent);
 }
 
+/* spec: white search box, ~360px wide, placeholder "Search..." */
 .sh-search {
   display: flex;
   align-items: center;
@@ -83,9 +89,10 @@
   width: min(360px, 100%);
   height: 34px;
   padding: 0 12px;
-  color: var(--sh-muted);
+  color: var(--color-text-muted);
   background: #fff;
   border-radius: 8px;
+  border: 1px solid var(--color-border);
 }
 
 .sh-search input {
@@ -94,14 +101,15 @@
   height: 100%;
   font: inherit;
   font-size: 13px;
-  color: var(--sh-ink);
+  color: var(--color-text);
   background: transparent;
   border: 0;
   outline: none;
 }
 
 .sh-search:focus-within {
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(20, 102, 63, 0.15);
 }
 
 .sh-topbar-right {
@@ -112,8 +120,9 @@
 }
 
 .sh-user-name {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
+  color: #fff;
 }
 
 /* ---------- Avatar ---------- */
@@ -122,28 +131,32 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  font-size: 14px;
+  width: 28px;
+  height: 28px;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--sh-navy);
+  color: var(--color-primary);
   background: #fff;
   border-radius: 50%;
 }
 
 .sh-avatar-sm {
-  width: 30px;
-  height: 30px;
-  font-size: 12px;
+  width: 24px;
+  height: 24px;
+  font-size: 11px;
 }
 
 /* ---------- Sidebar ---------- */
+/* spec: Width ~140px (collapsed: 56px). Background --color-primary. */
+/* spec: Top block: round 40px avatar, user name (600), green "Online" dot. */
 .sh-sidebar {
   display: flex;
   flex-direction: column;
   min-height: 0;
   color: #fff;
-  background: var(--sh-navy);
+  background: var(--color-primary);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
 }
 
 .sh-profile {
@@ -152,6 +165,20 @@
   gap: 12px;
   padding: 20px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sh-profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
 }
 
 .sh-profile-copy {
@@ -166,6 +193,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #fff;
 }
 
 .sh-profile-copy span {
@@ -176,11 +204,10 @@
   color: rgba(255, 255, 255, 0.75);
 }
 
-.sh-profile-copy i {
-  flex: none;
+.sh-status-dot {
   width: 7px;
   height: 7px;
-  background: #2ecc71;
+  background: var(--color-success);
   border-radius: 50%;
 }
 
@@ -198,9 +225,10 @@
   align-items: center;
   gap: 12px;
   width: 100%;
-  height: 42px;
-  padding: 0 20px;
-  font-size: 13px;
+  height: 40px;         /* spec: item height 40px */
+  padding: 0 16px;      /* spec: left padding 16px */
+  font-size: 13px;      /* spec: label 13px */
+  font-weight: 500;
   color: #fff;
   text-align: left;
   background: transparent;
@@ -215,8 +243,8 @@
 
 .sh-shell .sh-nav-item.is-active {
   font-weight: 600;
-  background: var(--sh-navy-active);
-  border-left-color: var(--sh-accent);
+  background: var(--color-primary-active);
+  border-left-color: var(--color-accent);
 }
 
 .sh-nav-empty {
@@ -231,13 +259,15 @@
   gap: 12px;
   width: 100%;
   height: 46px;
-  padding: 0 20px;
+  padding: 0 16px;
   font-size: 13px;
+  font-weight: 500;
   color: #fff;
   text-align: left;
   background: transparent;
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: auto;
 }
 
 .sh-shell .sh-logout:hover {
@@ -251,11 +281,12 @@
   min-width: 0;
   min-height: 0;
   overflow-y: auto;
-  background: var(--sh-page);
+  background: var(--color-page-bg);
 }
 
 .sh-content {
   flex: 1;
+  padding: 24px;
 }
 
 .sh-footer {
@@ -265,9 +296,10 @@
   gap: 12px;
   flex-wrap: wrap;
   padding: 14px 24px;
-  font-size: 12px;
-  color: var(--sh-muted);
-  border-top: 1px solid #e5e7eb;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  flex-shrink: 0;
 }
 
 /* ---------- Placeholder page ---------- */
@@ -276,48 +308,53 @@
   justify-items: start;
   gap: 10px;
   max-width: 560px;
-  margin: 24px;
+  margin: 24px auto;
   padding: 28px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.08);
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
 }
 
 .sh-placeholder h1 {
   margin: 0;
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--sh-navy);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+.sh-placeholder strong {
+  color: var(--color-accent);
 }
 
 .sh-placeholder p {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.6;
-  color: var(--sh-muted);
+  color: var(--color-text-muted);
 }
 
 .sh-placeholder .sh-placeholder-note {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--sh-accent);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-accent);
 }
 
 .sh-shell .sh-btn {
   height: 36px;
   margin-top: 6px;
   padding: 0 16px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: #fff;
-  background: var(--sh-accent);
+  background: var(--color-accent);
   border: 0;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(229, 57, 53, 0.3);
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-button);
 }
 
 .sh-shell .sh-btn:hover {
-  background: #c62828;
+  background: var(--color-accent-hover);
 }
 
 /* ---------- Responsive ---------- */
@@ -362,7 +399,7 @@
     position: fixed;
     inset: var(--sh-top) 0 0 0;
     z-index: 20;
-    background: rgba(15, 23, 42, 0.45);
+    background: rgba(15, 42, 30, 0.45);
     border: 0;
   }
 }
@@ -385,7 +422,7 @@
   justify-content: space-between;
   width: 100%;
   height: 38px;
-  padding: 0 20px;
+  padding: 0 16px;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;

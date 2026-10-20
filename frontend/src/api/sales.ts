@@ -1,11 +1,12 @@
 import { apiBlobRequest, apiRequest } from './client'
 
 export interface ApiEnvelope<T> { success: boolean; data: T; meta?: { page: number; limit: number; total: number } }
-export interface SalesOrderItemInput { item_id: string; quantity: number; unit_price: number }
-export interface SalesOrderInput { customer_id: string; required_date?: string | null; notes?: string | null; items: SalesOrderItemInput[] }
-export interface SalesOrder { id: string; order_number: string; customer_id: string; customer_name: string; status: string; total_amount: number; items: Array<SalesOrderItemInput & { id: string; reserved_quantity: number; delivered_quantity: number; available_quantity: number }> }
+export interface SalesOrderItem { id: string; sales_order_id: string; item_id: string; item_code?: string; item_name?: string; quantity: number; reserved_quantity: number; delivered_quantity: number; available_quantity?: number; unit_price: number; line_total: number }
+export interface SalesOrder { id: string; order_number: string; customer_id: string; customer_name?: string; status: string; order_date: string; required_date?: string | null; notes?: string | null; total_amount: number; created_at?: string; items?: SalesOrderItem[] }
+export interface SalesOrderInput { customer_id: string; required_date?: string | null; notes?: string | null; items: Array<{ item_id: string; quantity: number; unit_price: number }> }
+export interface DeliveryNoteItem { id: string; delivery_note_id: string; sales_order_item_id: string; item_id: string; item_code?: string; item_name?: string; batch_id?: string | null; batch_number?: string | null; quantity_delivered: number }
+export interface DeliveryNote { id: string; delivery_number: string; sales_order_id: string; order_number?: string; delivered_by: string; delivered_by_name?: string; delivery_date: string; recipient_name?: string | null; recipient_signature_reference?: string | null; notes?: string | null; created_at?: string; items?: DeliveryNoteItem[] }
 export interface DeliveryInput { recipient_name?: string | null; recipient_signature_reference?: string | null; notes?: string | null; items: Array<{ sales_order_item_id: string; quantity_delivered: number }> }
-export interface DeliveryNote { id: string; delivery_number: string; sales_order_id: string; order_number: string; delivery_date: string; recipient_name?: string | null; items: Array<{ id: string; item_id: string; item_code: string; item_name: string; quantity_delivered: number; batch_id?: string | null }> }
 
 export const listSalesOrders = (page = 1, limit = 20, status?: string) => apiRequest<ApiEnvelope<SalesOrder[]>>(`/sales-orders?page=${page}&limit=${limit}${status ? `&status=${encodeURIComponent(status)}` : ''}`)
 export const getSalesOrder = (id: string) => apiRequest<ApiEnvelope<SalesOrder>>(`/sales-orders/${id}`)

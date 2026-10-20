@@ -1,0 +1,217 @@
+/* Notification bell + popover — UI Design Specification 5.1
+   (bell with a small accent badge showing the count) */
+
+.notification-wrap {
+  position: relative;
+}
+
+.notification-button {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+}
+
+.notification-button:hover,
+.notification-button.selected {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.notification-count {
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  min-width: 15px;
+  height: 15px;
+  display: grid;
+  place-items: center;
+  padding: 0 3px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-accent);
+  border: 1px solid var(--color-primary);
+  border-radius: 99px;
+}
+
+.notification-popover {
+  position: absolute;
+  top: 40px;
+  right: -8px;
+  z-index: 60;
+  width: 320px;
+  max-height: 420px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: 0 12px 34px rgba(15, 42, 30, 0.18);
+}
+
+.popover-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.popover-heading strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.popover-heading span {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.popover-heading button {
+  padding: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.popover-heading button:hover {
+  text-decoration: underline;
+}
+
+.popover-loading {
+  padding: 24px 14px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.notification-error {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--color-danger);
+  background: #fdf3f2;
+  border-bottom: 1px solid #f0cfcc;
+}
+
+.popover-empty {
+  display: grid;
+  justify-items: center;
+  padding: 28px 16px;
+  text-align: center;
+}
+
+.popover-empty > span {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  color: var(--color-accent);
+  background: var(--color-accent-tint);
+}
+
+.popover-empty p {
+  margin: 10px 0 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.popover-empty small {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.notification-list {
+  overflow-y: auto;
+}
+
+.notification-entry {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 14px;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+}
+
+.notification-entry:hover {
+  background: var(--color-accent-tint);
+}
+
+.notification-entry.is-read {
+  opacity: 0.6;
+}
+
+.notification-entry-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  color: var(--color-accent);
+  background: var(--color-accent-tint);
+}
+
+.notification-entry-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.notification-entry-copy strong,
+.notification-entry-copy small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notification-entry-copy strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.notification-entry-copy small {
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.notification-entry-copy time {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.unread-marker {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}

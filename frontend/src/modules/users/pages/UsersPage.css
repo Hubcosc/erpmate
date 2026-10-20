@@ -141,6 +141,28 @@
   color: var(--users-muted);
 }
 
+/* Role filter — filled field with a bottom line, per the UI design tokens */
+.users-select {
+  height: 36px;
+  min-width: 150px;
+  padding: 0 28px 0 12px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--users-ink);
+  background: #eef5f1
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235B6A62' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")
+    no-repeat right 10px center;
+  border: 0;
+  border-bottom: 2px solid #b9cbc1;
+  border-radius: 4px 4px 0 0;
+  appearance: none;
+  cursor: pointer;
+}
+
+.users-select:focus {
+  border-bottom-color: #14663f;
+}
+
 /* ---------- States ---------- */
 .users-state {
   padding: 16px 0;

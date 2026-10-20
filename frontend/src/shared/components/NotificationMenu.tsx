@@ -6,6 +6,7 @@ import {
   type Notification,
 } from '../../api/notifications'
 import { Icon } from './Icon'
+import './NotificationMenu.css'
 
 export function NotificationMenu() {
   const [open, setOpen] = useState(false)
@@ -51,7 +52,7 @@ export function NotificationMenu() {
   return (
     <div className="notification-wrap">
       <button
-        className={`icon-button notification-button ${open ? 'selected' : ''}`}
+        className={`notification-button ${open ? 'selected' : ''}`}
         aria-label={`Notifications${unread ? `, ${unread} unread` : ''}`}
         aria-expanded={open}
         onClick={() => setOpen(!open)}

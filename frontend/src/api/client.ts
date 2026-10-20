@@ -6,6 +6,20 @@ export function setApiToken(token: string | null) {
   bearerToken = token
 }
 
+/** The active JWT, from memory or from the persisted session.
+ *  Used by API clients that manage their own fetch (e.g. the inventory client). */
+export function getApiToken(): string | null {
+  if (bearerToken) return bearerToken
+  try {
+    const raw = window.localStorage.getItem('erpmate.session') ?? window.sessionStorage.getItem('erpmate.session')
+    if (!raw) return null
+    const session = JSON.parse(raw) as { token?: string }
+    return session.token ?? null
+  } catch {
+    return null
+  }
+}
+
 export async function apiRequest<T>(path: string, init?: RequestInit): Promise<T> {
   const headers = new Headers(init?.headers)
   if (init?.body && !headers.has('Content-Type')) headers.set('Content-Type', 'application/json')

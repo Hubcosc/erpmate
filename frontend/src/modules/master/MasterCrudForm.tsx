@@ -1,8 +1,8 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useState } from 'react'
 
 export type FieldType = 'text' | 'email' | 'tel' | 'number' | 'textarea' | 'select' | 'checkbox'
 
-export interface FieldConfig<T = any> {
+export interface FieldConfig {
   key: string
   label: string
   type?: FieldType
