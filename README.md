@@ -354,6 +354,40 @@ Migrations live in `backend/migrations/` as `NNNN_name.up.sql` files and are app
 - Use the **next free number** for a new migration. Two files with the same number cause problems.
 - Don't edit a migration that has already been applied; add a new one instead.
 
+### Demo data
+
+A fresh database has no master data, so every screen is empty. `cmd/seed-demo` fills it with a realistic, end-to-end scenario: master data, one user per role, and the full procure-to-pay chain (requisition → approval → purchase order → goods receipt → material issue → production receipt → sales order → delivery note).
+
+It talks to the running API rather than writing to PostgreSQL directly, so every document goes through the real service layer and stock movements, batches, reservations, status history and notifications are all created the way the app creates them. Each step is performed by the role that is allowed to perform it.
+
+```bash
+# The API must be running first
+cd backend
+go run ./cmd/seed-demo -reset -password "your-admin-password"
+```
+
+| Flag | Default | Purpose |
+| --- | --- | --- |
+| `-reset` | off | Truncate all transactional tables first, so the seed always starts from a known state |
+| `-api` | `http://localhost:8080/api/v1` | Base URL of the running API |
+| `-email` | `BOOTSTRAP_ADMIN_EMAIL` | Administrator email to sign in with |
+| `-password` | `BOOTSTRAP_ADMIN_PASSWORD` | Administrator password |
+
+The seed creates these accounts, all with the password `DemoPass12345!`:
+
+| Email | Role |
+| --- | --- |
+| `merina.adam@example.test` | Department Head |
+| `abel.tadesse@example.test` | Production Manager |
+| `sara.girma@example.test` | Finance |
+| `yonas.bekele@example.test` | Purchasing |
+| `marta.tesfaye@example.test` | Store Keeper |
+| `dawit.alemu@example.test` | Production Store Keeper |
+| `hana.mulugeta@example.test` | Sales |
+| `kalkidan.fitsum@example.test` | Sales Head |
+
+> The alert worker scans every 15 minutes. After seeding, restart the API so it scans immediately and raises the low-stock and expiry alerts.
+
 ---
 
 ## 🩺 Troubleshooting
