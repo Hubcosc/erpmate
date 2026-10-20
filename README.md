@@ -198,6 +198,8 @@ On first start the backend creates a bootstrap admin from `BOOTSTRAP_ADMIN_EMAIL
 
 > **Warning:** Change the bootstrap password and set a strong, unique `JWT_SECRET` before deploying anywhere. Never commit your `.env` file.
 
+> **Want data to look at?** A fresh database is empty, so every screen shows an empty state. Seed a full demo scenario — master data, one user per role and the whole procure-to-pay chain — with the [demo seeder](#-demo-data). It creates ten extra accounts, all with the password `DemoPass12345!`; see [Demo accounts](#demo-accounts).
+
 ---
 
 ## ⚙️ Configuration
@@ -411,20 +413,44 @@ go run ./cmd/seed-demo -reset -password "your-admin-password"
 | `-email` | `BOOTSTRAP_ADMIN_EMAIL` | Administrator email to sign in with |
 | `-password` | `BOOTSTRAP_ADMIN_PASSWORD` | Administrator password |
 
-The seed creates these accounts, all with the password `DemoPass12345!`:
+### Demo accounts
 
-| Email | Role |
-| --- | --- |
-| `merina.adam@example.test` | Department Head |
-| `abel.tadesse@example.test` | Production Manager |
-| `sara.girma@example.test` | Finance |
-| `yonas.bekele@example.test` | Purchasing |
-| `marta.tesfaye@example.test` | Store Keeper |
-| `dawit.alemu@example.test` | Production Store Keeper |
-| `hana.mulugeta@example.test` | Sales |
-| `kalkidan.fitsum@example.test` | Sales Head |
+The seed creates these accounts. **Every one of them uses the same password:**
+
+```
+DemoPass12345!
+```
+
+| Email | Password | Role | What to look at |
+| --- | --- | --- | --- |
+| `merina.adam@example.test` | `DemoPass12345!` | Department Head | Purchase requisitions, material requests, acknowledging a material issue |
+| `abel.tadesse@example.test` | `DemoPass12345!` | Production Manager | Approval queues, production receipts, reports |
+| `sara.girma@example.test` | `DemoPass12345!` | Finance | Requisition approvals, purchase orders, valuation reports |
+| `yonas.bekele@example.test` | `DemoPass12345!` | Purchasing | Purchase orders, goods receipts |
+| `marta.tesfaye@example.test` | `DemoPass12345!` | Store Keeper | Main Store, goods receipts, material issues, stock alerts |
+| `dawit.alemu@example.test` | `DemoPass12345!` | Production Store Keeper | Finished Goods Store, production receipts, stock alerts |
+| `hana.mulugeta@example.test` | `DemoPass12345!` | Sales | Sales orders, delivery notes, delivery note PDFs |
+| `kalkidan.fitsum@example.test` | `DemoPass12345!` | Sales Head | Sales orders, delivery notes, sales reports |
+| `tewodros.girma@example.test` | `DemoPass12345!` | Department Head | A requisition left waiting for approval |
+| `selam.worku@example.test` | `DemoPass12345!` | Department Head | Quality Assurance |
+
+The administrator is the one created from your own `.env`:
+
+| Email | Password | Role |
+| --- | --- | --- |
+| `admin@example.test` | `BOOTSTRAP_ADMIN_PASSWORD` from your `.env` | System Administrator |
+
+```env
+# .env
+BOOTSTRAP_ADMIN_EMAIL=admin@example.test
+BOOTSTRAP_ADMIN_PASSWORD=replace-with-a-strong-password
+```
+
+> **Only the administrator can open the Super admin site.** The other roles each see a different set of modules, so signing in as several of them is the quickest way to check the role-based navigation.
 
 > The alert worker scans every 15 minutes. After seeding, restart the API so it scans immediately and raises the low-stock and expiry alerts.
+
+> **Before this database goes anywhere shared:** these accounts all have a published password. Deactivate them from **Administration → Super admin → Users**, or reset the database with `go run ./cmd/seed-demo -reset` against a throwaway copy.
 
 See [`backend/cmd/seed-demo/README.md`](backend/cmd/seed-demo/README.md) for how to extend the seeder with your own demo data.
 

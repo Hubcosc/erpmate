@@ -1,5 +1,7 @@
 ## ErpMate UI Design Specification
 
+admin@example.test | replace-with-a-strong-password
+
 Prepared for the UI developer. Based on the two Horizon EBS reference screens: the module launcher (home) and the transaction form (Quotation Details).
 
 All sizes and colors below are measured by eye from the screenshots. Treat them as the target and confirm against the screenshots at 100% zoom before sign-off.
