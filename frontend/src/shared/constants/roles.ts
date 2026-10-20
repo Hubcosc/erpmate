@@ -28,7 +28,7 @@ export const ROLE_MENUS: Record<string, string[]> = {
     'Purchase orders', 'Goods receipts', 'Inventory', 'Production receipts', 'Sales orders', 'Delivery notes',
     'Reports',
     'Departments', 'Categories', 'Items', 'Suppliers', 'Customers', 'Warehouses',
-    'Users', 'Roles & Permissions', 'Audit Log',
+    'Users', 'Roles & Permissions', 'Audit Log', 'Super admin',
   ],
 }
 

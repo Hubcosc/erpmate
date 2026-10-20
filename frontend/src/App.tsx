@@ -41,6 +41,7 @@ import StoreViewPage from './modules/inventory/StoreViewPage'
 import StoresOverviewPage from './modules/inventory/StoresOverviewPage'
 import RolesPermissionsPage from './modules/admin/RolesPermissionsPage'
 import AuditLogPage from './modules/admin/AuditLogPage'
+import AdminPage from './modules/admin/AdminPage'
 // Sidebar groups. Swap the icon names for any other names your Icon component supports.
 type NavItem = { label: string; icon: IconName }
 const navGroups: { title: string; items: NavItem[] }[] = [
@@ -93,6 +94,7 @@ const navGroups: { title: string; items: NavItem[] }[] = [
       { label: 'Users', icon: 'settings' },
       { label: 'Roles & Permissions', icon: 'settings' },
       { label: 'Audit Log', icon: 'reports' },
+      { label: 'Super admin', icon: 'settings' },
     ],
   },
 ]
@@ -331,6 +333,8 @@ function App() {
         return <RolesPermissionsPage />
       case 'Audit Log':
         return <AuditLogPage onNavigate={navigate} />
+      case 'Super admin':
+        return <AdminPage />
       default:
         return <ModulePlaceholder page={activePage} onBack={goOverview} />
     }

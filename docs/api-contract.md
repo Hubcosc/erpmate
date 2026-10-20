@@ -27,3 +27,17 @@ The implemented requisition endpoints currently use the envelope in `backend/int
 Report access is role-limited in handlers. The current customer schema has no region field, so regional sales breakdowns are not available. Automated notifications are in-app only; email/SMS delivery is not included.
 
 GRN posting and production-receipt acceptance atomically update stock balances, batches, and stock movements. Sales order creation reserves finished-goods stock; delivery notes atomically release reservations, decrement stock, and record stock movements. Delivery-note PDF export is a printable dispatch document, not an invoice or tax/e-invoice.
+
+## Super administration endpoints
+
+The super administration site is a Django-style registry of models. It is mounted at `/admin` and every route requires the `admin` role.
+
+- `GET /admin/models` returns the model registry: the models, their groups, their list columns and their form fields. The frontend renders the forms from this, so the UI always matches the fields the backend accepts.
+- `GET /admin/lookups` returns the reference lists the forms use (roles, departments, item categories, items, warehouses, suppliers, customers).
+- `GET /admin/overview` returns the record count of every model.
+- `GET /admin/{model}` lists records and supports `?page=`, `?limit=` and `?search=`.
+- `GET /admin/{model}/{id}` returns one record with every form field populated.
+- `POST /admin/{model}` creates a record, `PUT /admin/{model}/{id}` updates one and `DELETE /admin/{model}/{id}` deletes one. Deletes are soft deletes on tables that have a `deleted_at` column, so the audit trail is preserved.
+- Workflow documents, stock and the audit trail are registered as read-only: they can be browsed but not created or changed here, so the approval trail stays intact.
+
+Identifiers used in SQL come from the registry and never from a request; every value is a bind parameter. The registry is validated against the live schema at startup, so a stale entry stops the API with a clear message rather than failing with a 500 later.

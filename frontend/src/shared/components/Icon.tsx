@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 export type IconName =
   | 'overview' | 'purchase' | 'materials' | 'inventory' | 'production'
   | 'sales' | 'reports' | 'settings' | 'search' | 'bell' | 'menu'
-  | 'arrow' | 'clock' | 'spark' | 'chevron' | 'close'
+  | 'arrow' | 'clock' | 'spark' | 'chevron' | 'close' | 'categories'
 
 export function Icon({ name, size = 18 }: { name: IconName; size?: number }) {
   const common = {
@@ -34,6 +34,7 @@ export function Icon({ name, size = 18 }: { name: IconName; size?: number }) {
     clock: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,
     spark: <><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"/></>,
     chevron: <path d="m9 18 6-6-6-6"/>,
+    categories: <><path d="M3.5 5.5h6l1.5 2h9.5v11a1 1 0 0 1-1 1h-16a1 1 0 0 1-1-1V6.5a1 1 0 0 1 1-1Z"/><path d="M3.5 9.5h17"/></>,
     close: <><path d="m6 6 12 12M18 6 6 18"/></>,
   }
 

@@ -14,6 +14,7 @@ import (
 	"github.com/Ethio-ERP/erpmate/internal/database"
 	mw "github.com/Ethio-ERP/erpmate/internal/middleware"
 
+	"github.com/Ethio-ERP/erpmate/internal/modules/admin"
 	"github.com/Ethio-ERP/erpmate/internal/modules/auth"
 	"github.com/Ethio-ERP/erpmate/internal/modules/inventory"
 	"github.com/Ethio-ERP/erpmate/internal/modules/master"
@@ -91,6 +92,16 @@ func main() {
 	reportRepo := report.NewRepository(db)
 	reportHandler := report.NewHandler(reportRepo)
 
+	// Super administration site (Django style, driven by a model registry).
+	adminService := admin.NewService(db)
+	adminHandler := admin.NewHandler(adminService)
+
+	// A registry entry that names a column the table does not have would fail
+	// with a 500 the first time somebody opened that model, so check it now.
+	if err := admin.Validate(context.Background(), db); err != nil {
+		log.Fatalf("admin registry is invalid: %v", err)
+	}
+
 	// 4. Setup Router
 	r := chi.NewRouter()
 
@@ -147,6 +158,10 @@ func main() {
 			r.Mount("/delivery-notes", salesHandler.DeliveryRoutes())
 			r.Mount("/inventory", inventoryStockHandler.Routes())
 			r.Mount("/reports", reportHandler.Routes())
+
+			// Super administration site. The handler checks the admin role itself
+			// so that only a super administrator can reach it.
+			r.Mount("/admin", adminHandler.Routes())
 		})
 	})
 

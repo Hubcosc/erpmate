@@ -335,6 +335,44 @@ All endpoints require authentication. Lists return `{ "data": [...], "meta": { "
 
 ---
 
+## 🛠️ Super administration
+
+Sign in as `admin` and open **Administration → Super admin**. It is a Django-style
+site: a registry of every model in the system on the left, the records on the
+right.
+
+| | |
+| --- | --- |
+| **Models** | 23, grouped into Master data, Access, Procurement, Production & materials, Sales, Inventory and System |
+| **Master data** | Items, categories, suppliers, customers, warehouses and departments can be created, changed and deleted |
+| **Access** | Users can be created and changed, including resetting a password |
+| **Everything else** | Workflow documents, stock and the audit trail are read-only, so the approval trail stays intact |
+
+Deleting a record is a soft delete — the row keeps its `deleted_at`, so nothing
+disappears from the audit trail.
+
+The site is driven by a model registry rather than a hand-written page per
+entity. Each model declares its table, its list columns and its form fields, and
+the same registry is served to the frontend at `GET /admin/models`, so the UI
+renders exactly the fields the backend accepts. Adding a model means adding one
+entry to `backend/internal/modules/admin/registry.go` — no frontend change and
+no new endpoint.
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `GET` | `/admin/models` | The model registry |
+| `GET` | `/admin/lookups` | Reference lists used by the forms |
+| `GET` | `/admin/overview` | Record count for every model |
+| `GET` | `/admin/{model}` | List records — supports `?page=`, `?limit=`, `?search=` |
+| `GET` | `/admin/{model}/{id}` | One record with every form field |
+| `POST` | `/admin/{model}` | Create a record |
+| `PUT` | `/admin/{model}/{id}` | Update a record |
+| `DELETE` | `/admin/{model}/{id}` | Delete (soft delete where the table has `deleted_at`) |
+
+Every route requires the `admin` role; anything else gets `403`.
+
+---
+
 ## 🧰 Development
 
 ```bash
@@ -387,6 +425,8 @@ The seed creates these accounts, all with the password `DemoPass12345!`:
 | `kalkidan.fitsum@example.test` | Sales Head |
 
 > The alert worker scans every 15 minutes. After seeding, restart the API so it scans immediately and raises the low-stock and expiry alerts.
+
+See [`backend/cmd/seed-demo/README.md`](backend/cmd/seed-demo/README.md) for how to extend the seeder with your own demo data.
 
 ---
 
